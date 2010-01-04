@@ -124,7 +124,8 @@ remote_directory "#{node[:nginx][:dir]}/ssl" do
 #  notifies :restart, resources(:service => "nginx")
 end
 
-directory node[:nginx][:www_path] do
+directory "#{node[:nginx][:www_path]}/#{node[:nginx][:webapps_path]}" do
+  recursive true
   owner node[:nginx][:user]
   group node[:nginx][:group]
   mode "0755"

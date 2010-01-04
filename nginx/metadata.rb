@@ -49,6 +49,11 @@ attribute "nginx/www_path",
   :description => "Location for nginx sites",
   :default => "/srv/www"
 
+attribute "nginx/webapps_path",
+  :display_name => "webapps location",
+  :description => "Location for web applications",
+  :default => "_apps"
+
 #attribute "nginx/worker_processes",
 #  :display_name => "Nginx Worker Processes",
 #  :description => "Number of worker processes",

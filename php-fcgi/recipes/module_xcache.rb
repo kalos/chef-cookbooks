@@ -19,5 +19,10 @@
 #
 
 package "php5-xcache" do
-    action :upgrade
+  action :upgrade
+end
+
+link "#{node[:nginx][:www_path]}/#{node[:nginx][:webapps_path]}/xcache" do
+  to "/usr/share/xcache/admin"
+  only_if "test ! -f #{node[:nginx][:www_path]}/#{node[:nginx][:webapps_path]}/xcache"
 end

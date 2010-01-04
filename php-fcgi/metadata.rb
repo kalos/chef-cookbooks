@@ -29,6 +29,7 @@ recipe            "php-fcgi::module_mysql", "Install the php5-mysql package"
 recipe            "php-fcgi::module_pgsql", "Install the php5-pgsql package"
 recipe            "php-fcgi::module_socket", "Install the php-net-socket package"
 recipe            "php-fcgi::module_sqlite", "Install the php5-sqlite package"
+recipe            "php-fcgi::module_xcache", "Install the php5-xcache package"
 recipe            "php-fcgi::pear", "Install the php-pear package"
 
 attribute "php_fcgi/user",

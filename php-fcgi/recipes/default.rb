@@ -25,7 +25,7 @@ end
 include_recipe "php-fcgi::pear"
 #include_recipe "php-fcgi::module_apc"
 include_recipe "php-fcgi::module_curl"
-#include_recipe "php-fcgi::module_fileinfo"
+include_recipe "php-fcgi::module_fileinfo"
 include_recipe "php-fcgi::module_gd"
 include_recipe "php-fcgi::module_imap"
 include_recipe "php-fcgi::module_mail"
@@ -36,7 +36,7 @@ include_recipe "php-fcgi::module_mysql"
 include_recipe "php-fcgi::module_socket"
 include_recipe "php-fcgi::module_sqlite"
 include_recipe "php-fcgi::module_mdb2_sqlite"
-include_recipe "php-fcgi::module_xcache"
+#include_recipe "php-fcgi::module_xcache"
 
 service "php-fcgi" do
   supports :restart => true, :reload => true
