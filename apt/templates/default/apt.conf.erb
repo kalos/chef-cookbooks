@@ -1,0 +1,26 @@
+//APT::Default-Release "stable";
+APT::Cache-Limit <%= @node[:apt][:cache_limit] %>;
+APT::Clean-Installed;
+APT::Install-Recommends "false";
+//APT::Get::Purge;
+//APT::Get::Fix-Broken;
+//APT::Get::Fix-Missing;
+APT::Get::Show-Upgraded "true";
+
+aptitude "";
+aptitude::Keep-Unused-Pattern "";
+aptitude::Delete-Unused-Pattern "";
+aptitude::UI "";
+aptitude::UI::HelpBar "false";
+aptitude::UI::Menubar-Autohide "true";
+aptitude::UI::Minibuf-Prompts "false";
+aptitude::UI::Exit-On-Last-Close "true";
+aptitude::UI::Description-Visible-By-Default "true";
+aptitude::UI::ViewTabs "true";
+aptitude::UI::InfoAreaTabs "false";
+aptitude::UI::Advance-On-Action "false";
+aptitude::UI::Auto-Show-Reasons "true";
+aptitude::UI::Minibuf-Download-Bar "true";
+aptitude::Auto-Upgrade "false";
+aptitude::AutoClean-After-Update "true";
+aptitude::Suppress-Read-Only-Warning "false";

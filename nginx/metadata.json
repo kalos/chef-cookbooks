@@ -1,0 +1,320 @@
+{
+  "version": "0.8.0",
+  "maintainer": "Calogero Lo Leggio",
+  "recommendations": {
+
+  },
+  "maintainer_email": "kalos@nerdrug.org",
+  "suggestions": {
+    "ruby-enterprise": [
+
+    ],
+    "php-fcgi": [
+
+    ]
+  },
+  "platforms": {
+    "debian": [
+
+    ],
+    "ubuntu": [
+
+    ]
+  },
+  "conflicting": {
+
+  },
+  "recipes": {
+    "nginx::passenger": "Phusion Passenger (mod_rails) for nginx",
+    "nginx": ""
+  },
+  "providing": {
+    "nginx::passenger": [
+
+    ],
+    "nginx": [
+
+    ]
+  },
+  "long_description": "",
+  "name": "nginx",
+  "replacing": {
+
+  },
+  "dependencies": {
+
+  },
+  "attributes": {
+    "nginx/fcgi": {
+      "required": false,
+      "type": "string",
+      "recipes": [
+
+      ],
+      "description": "nginx with fcgi support (I suggest php-fpm)",
+      "multiple_values": false,
+      "display_name": "fcgi support"
+    },
+    "nginx/worker_connections": {
+      "required": false,
+      "default": "1024",
+      "type": "string",
+      "recipes": [
+
+      ],
+      "description": "Number of connections per worker",
+      "multiple_values": false,
+      "display_name": "Nginx Worker Connections"
+    },
+    "nginx/gzip_types": {
+      "required": false,
+      "default": [
+        "text/plain",
+        "text/html",
+        "text/css",
+        "application/x-javascript",
+        "text/xml",
+        "application/xml",
+        "application/xml+rss",
+        "text/javascript"
+      ],
+      "type": "array",
+      "recipes": [
+
+      ],
+      "description": "Supported MIME-types for gzip",
+      "multiple_values": false,
+      "display_name": "Nginx Gzip Types"
+    },
+    "nginx/user": {
+      "required": false,
+      "default": "www-data",
+      "type": "string",
+      "recipes": [
+
+      ],
+      "description": "User nginx will run as",
+      "multiple_values": false,
+      "display_name": "Nginx User"
+    },
+    "nginx/binary": {
+      "required": false,
+      "default": "/usr/sbin/nginx",
+      "type": "string",
+      "recipes": [
+
+      ],
+      "description": "Location of the nginx server binary",
+      "multiple_values": false,
+      "display_name": "Nginx Binary"
+    },
+    "nginx/server_tokens": {
+      "required": false,
+      "default": "off",
+      "type": "string",
+      "recipes": [
+
+      ],
+      "description": "Whether to send the Nginx version number in error pages and Server header",
+      "multiple_values": false,
+      "display_name": "Nginx send version number of itself"
+    },
+    "nginx/keepalive_timeout": {
+      "required": false,
+      "default": "75",
+      "type": "string",
+      "recipes": [
+
+      ],
+      "multiple_values": false,
+      "display_name": "Nginx Keepalive Timeout"
+    },
+    "nginx/group": {
+      "required": false,
+      "default": "www-data",
+      "type": "string",
+      "recipes": [
+
+      ],
+      "description": "Group nginx will run as",
+      "multiple_values": false,
+      "display_name": "Nginx Group"
+    },
+    "nginx/gzip_proxied": {
+      "required": false,
+      "default": "any",
+      "type": "string",
+      "recipes": [
+
+      ],
+      "description": "Whether gzip is proxied",
+      "multiple_values": false,
+      "display_name": "Nginx Gzip Proxied"
+    },
+    "nginx/gzip_comp_level": {
+      "required": false,
+      "default": "7",
+      "type": "string",
+      "recipes": [
+
+      ],
+      "description": "Amount of compression to use",
+      "multiple_values": false,
+      "display_name": "Nginx Gzip Compression Level"
+    },
+    "nginx/www_path": {
+      "required": false,
+      "default": "/srv/www",
+      "type": "string",
+      "recipes": [
+
+      ],
+      "description": "Location for nginx sites",
+      "multiple_values": false,
+      "display_name": "sites location"
+    },
+    "nginx/dir": {
+      "required": false,
+      "default": "/etc/nginx",
+      "type": "string",
+      "recipes": [
+
+      ],
+      "description": "Location of nginx configuration files",
+      "multiple_values": false,
+      "display_name": "Nginx Directory"
+    },
+    "nginx/gzip_min_length": {
+      "required": false,
+      "default": "64",
+      "type": "string",
+      "recipes": [
+
+      ],
+      "description": "Sets the minimum length of of the response that will be compressed",
+      "multiple_values": false,
+      "display_name": "Nginx Gzip compress min length"
+    },
+    "nginx/charset": {
+      "required": false,
+      "default": "utf-8",
+      "type": "string",
+      "recipes": [
+
+      ],
+      "description": "Adds the line 'Content-Type' into response-header with indicated encoding",
+      "multiple_values": false,
+      "display_name": "Nginx charset"
+    },
+    "nginx/server_names_hash_bucket_size": {
+      "required": false,
+      "default": "64",
+      "type": "string",
+      "recipes": [
+
+      ],
+      "multiple_values": false,
+      "display_name": "Nginx Server Names Hash Bucket Size"
+    },
+    "nginx/sendfile": {
+      "required": false,
+      "default": "on",
+      "type": "string",
+      "recipes": [
+
+      ],
+      "description": "Increase overall system performance if you allow downloads of large to medium sized files",
+      "multiple_values": false,
+      "display_name": "Nginx sendfile"
+    },
+    "nginx/gzip_http_version": {
+      "required": false,
+      "default": "1.0",
+      "type": "string",
+      "recipes": [
+
+      ],
+      "description": "Version of HTTP Gzip",
+      "multiple_values": false,
+      "display_name": "Nginx Gzip HTTP Version"
+    },
+    "nginx/dir_extra_conf": {
+      "required": false,
+      "default": "conf.d",
+      "type": "string",
+      "recipes": [
+
+      ],
+      "description": "Sublocation of nginx extra configuration files",
+      "multiple_values": false,
+      "display_name": "Nginx extra conf Directory"
+    },
+    "nginx/passenger": {
+      "required": false,
+      "type": "string",
+      "recipes": [
+
+      ],
+      "description": "nginx with passenger support",
+      "multiple_values": false,
+      "display_name": "nginx-passenger"
+    },
+    "nginx/worker_priority": {
+      "required": false,
+      "default": "-5",
+      "type": "string",
+      "recipes": [
+
+      ],
+      "description": "Priority of worker",
+      "multiple_values": false,
+      "display_name": "Nginx Worker Priority"
+    },
+    "nginx/log_dir": {
+      "required": false,
+      "default": "/var/log/nginx",
+      "type": "string",
+      "recipes": [
+
+      ],
+      "description": "Location for nginx logs",
+      "multiple_values": false,
+      "display_name": "Nginx Log Directory"
+    },
+    "nginx/gzip": {
+      "required": false,
+      "default": "on",
+      "type": "string",
+      "recipes": [
+
+      ],
+      "description": "Whether gzip is enabled",
+      "multiple_values": false,
+      "display_name": "Nginx Gzip"
+    },
+    "nginx/log_not_found": {
+      "required": false,
+      "default": "on",
+      "type": "string",
+      "recipes": [
+
+      ],
+      "description": "Enables or disables logging of requests that resolve into 404 status code",
+      "multiple_values": false,
+      "display_name": "Nginx write log_not_found"
+    },
+    "nginx/keepalive": {
+      "required": false,
+      "default": "on",
+      "type": "string",
+      "recipes": [
+
+      ],
+      "description": "Whether to enable keepalive",
+      "multiple_values": false,
+      "display_name": "Nginx Keepalive"
+    }
+  },
+  "license": "Apache 2.0",
+  "description": "Installs and configures nginx"
+}

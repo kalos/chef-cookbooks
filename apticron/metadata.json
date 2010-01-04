@@ -1,0 +1,38 @@
+{
+  "version": "0.2.0",
+  "maintainer": "Calogero Lo Leggio",
+  "recommendations": {
+
+  },
+  "maintainer_email": "kalos@nerdrug.org",
+  "suggestions": {
+
+  },
+  "platforms": {
+
+  },
+  "conflicting": {
+
+  },
+  "recipes": {
+    "apticron": ""
+  },
+  "providing": {
+    "apticron": [
+
+    ]
+  },
+  "long_description": "",
+  "name": "apticron",
+  "replacing": {
+
+  },
+  "dependencies": {
+
+  },
+  "attributes": {
+
+  },
+  "license": "Apache 2.0",
+  "description": "Installs/Configures apticron"
+}

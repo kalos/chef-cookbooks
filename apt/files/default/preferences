@@ -1,0 +1,16 @@
+Package: *
+Pin: release o=Debian,a=stable
+Pin-Priority: 900
+
+Package: *
+Pin: release a=lenny-backports
+Pin-Priority: 800
+
+Package: *
+Pin: release o=Debian,a=testing
+Pin-Priority: 700
+
+Explanation: only if I say so
+Package: *
+Pin: release o=Debian
+Pin-Priority: -10

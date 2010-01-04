@@ -1,0 +1,6 @@
+[apt]
+frontend=mail
+email_address=<%= @node[:apt][:email_admin] %>
+confirm=0
+save_seen=/var/lib/apt/listchanges.db
+which=both
