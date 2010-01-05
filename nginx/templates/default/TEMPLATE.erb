@@ -5,6 +5,6 @@ server {
   access_log <%= @node[:nginx][:log_dir] %>/TEMPLATE.access.log main buffer=32k;
   error_log  <%= @node[:nginx][:log_dir] %>/TEMPLATE.error.log  info;
 
-  root   /srv/www/TEMPLATE;
+  root   <%= @node[:nginx][:www_path] %>/TEMPLATE;
   index  index.html;
 }

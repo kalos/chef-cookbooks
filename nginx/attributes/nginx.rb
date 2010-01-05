@@ -16,7 +16,6 @@ else
 end
 
 default[:nginx][:www_path]     = "/srv/www"
-default[:nginx][:webapps_path] = "_apps"
 
 # if worker_processes == 0, they use all CPU's * 2 (if ssl or gzip is enable)
 default[:nginx][:worker_processes]              = 2

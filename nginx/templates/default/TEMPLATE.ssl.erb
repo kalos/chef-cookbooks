@@ -5,7 +5,7 @@ server {
   access_log <%= @node[:nginx][:log_dir] %>/TEMPLATE_ssl.access.log main buffer=32k;
   error_log  <%= @node[:nginx][:log_dir] %>/TEMPLATE_ssl.error.log  info;
 
-  root   /srv/www/TEMPLATE;
+  root   <%= @node[:nginx][:www_path] %>/TEMPLATE;
   index  index.html;
 
   ssl on;
