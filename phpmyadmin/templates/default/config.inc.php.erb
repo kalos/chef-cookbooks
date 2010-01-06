@@ -4,24 +4,24 @@
 /* Servers configuration */
 $i = 0;
 
-/* Server: <%= @node[:webapp][:phpmyadmin][:db_host] %> [1] */
+/* Server: <%= @node[:webapps][:phpmyadmin][:db_host] %> [1] */
 $i++;
-$cfg['Servers'][$i]['verbose'] = '<%= @node[:webapp][:phpmyadmin][:db_host] %>';
-$cfg['Servers'][$i]['host'] = '<%= @node[:webapp][:phpmyadmin][:db_host] %>';
-$cfg['Servers'][$i]['port'] = '<%= @node[:webapp][:phpmyadmin][:port] %>';
-$cfg['Servers'][$i]['ssl'] = <%= @node[:webapp][:phpmyadmin][:ssl] %>;
-$cfg['Servers'][$i]['connect_type'] = '<%= @node[:webapp][:phpmyadmin][:conn_type] %>';
-$cfg['Servers'][$i]['extension'] = '<%= @node[:webapp][:phpmyadmin][:extension] %>';
-$cfg['Servers'][$i]['compress'] = <%= @node[:webapp][:phpmyadmin][:compress] %>;
-$cfg['Servers'][$i]['auth_type'] = '<%= @node[:webapp][:phpmyadmin][:auth_type] %>';
+$cfg['Servers'][$i]['verbose'] = '<%= @node[:webapps][:phpmyadmin][:db_host] %>';
+$cfg['Servers'][$i]['host'] = '<%= @node[:webapps][:phpmyadmin][:db_host] %>';
+$cfg['Servers'][$i]['port'] = '<%= @node[:webapps][:phpmyadmin][:port] %>';
+$cfg['Servers'][$i]['ssl'] = <%= @node[:webapps][:phpmyadmin][:ssl] %>;
+$cfg['Servers'][$i]['connect_type'] = '<%= @node[:webapps][:phpmyadmin][:conn_type] %>';
+$cfg['Servers'][$i]['extension'] = '<%= @node[:webapps][:phpmyadmin][:extension] %>';
+$cfg['Servers'][$i]['compress'] = <%= @node[:webapps][:phpmyadmin][:compress] %>;
+$cfg['Servers'][$i]['auth_type'] = '<%= @node[:webapps][:phpmyadmin][:auth_type] %>';
 
 /* End of servers configuration */
 
-$cfg['blowfish_secret'] = '<%= @node[:webapp][:phpmyadmin][:blowpw] %>';
+$cfg['blowfish_secret'] = '<%= @node[:webapps][:phpmyadmin][:blowpw] %>';
 $cfg['UploadDir'] = 'upload';
 $cfg['SaveDir'] = 'save';
 $cfg['AllowAnywhereRecoding'] = true;
-$cfg['ForceSSL'] = <%= @node[:webapp][:phpmyadmin][:ssl] %>;
+$cfg['ForceSSL'] = <%= @node[:webapps][:phpmyadmin][:ssl] %>;
 $cfg['LeftDisplayLogo'] = false;
 $cfg['SQLQuery'] = array (
   'Validate' => true,
@@ -31,7 +31,7 @@ $cfg['Export'] = array (
   'asfile' => true,
   'charset' => 'utf-8',
 );
-$cfg['DefaultLang'] = '<%= @node[:webapp][:phpmyadmin][:lang] %>';
+$cfg['DefaultLang'] = '<%= @node[:webapps][:phpmyadmin][:lang] %>';
 $cfg['ServerDefault'] = 1;
 
 ?>

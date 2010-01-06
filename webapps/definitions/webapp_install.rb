@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: webapps
-# Definition:: install_src
+# Definition:: webapp_install
 # Author:: Calogero Lo Leggio <kalos@nerdrug.org>
 #
 # Copyright 2010, Calogero Lo Leggio
@@ -18,7 +18,7 @@
 # limitations under the License.
 #
 
-define :install_src, :user => "root", :url => nil, :compression => nil  do
+define :webapp_install, :user => "root", :url => nil, :compression => nil  do
   bash "install #{params[:name]}" do
     cwd "#{node[:webapps][:full_path]}"
     user params[:user]
@@ -31,4 +31,17 @@ define :install_src, :user => "root", :url => nil, :compression => nil  do
     EOH
     not_if "test -d #{node[:webapps][:full_path]}/#{params[:name]}-#{node[:webapps][params[:name].to_sym][:version]}"
   end
+
+#  params[:template] = Array.new
+  unless params[:template].empty?
+    params[:template].each do |t|
+      template "#{node[:webapps][:full_path]}/#{params[:name]}-#{node[:webapps][params[:name].to_sym][:version]}/#{t}" do
+        source File.basename(t) + ".erb"
+        owner node[:webapps][:user]
+        group node[:webapps][:group]
+        mode 0640
+      end
+    end
+  end
+
 end

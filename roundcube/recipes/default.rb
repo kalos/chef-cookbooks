@@ -17,33 +17,8 @@
 # limitations under the License.
 #
 
-#bash "install roudcube" do
-#  cwd "#{node[:nginx][:www_path]}/#{node[:nginx][:webapps_path]}"
-#  user "root"
-#  code <<-EOH
-#    wget http://downloads.sourceforge.net/project/roundcubemail/roundcubemail/#{node[:webapp][:roundcube][:version]}/roundcubemail-#{node[:webapp][:roundcube][:version]}.tar.gz
-#    tar xf roundcubemail-#{node[:webapp][:roundcube][:version]}.tar.gz
-#    chown -R #{node[:nginx][:user]}:#{node[:nginx][:user]} roundcubemail-#{node[:webapp][:roundcube][:version]}
-#    ln -sf roundcubemail-#{node[:webapp][:roundcube][:version]} roundcube
-#  EOH
-#  not_if "test -d #{node[:nginx][:www_path]}/#{node[:nginx][:webapps_path]}/roundcubemail-#{node[:webapp][:roundcube][:version]}"
-#end
-
-install_src "roundcube" do
+webapp_install "roundcube" do
   url "http://downloads.sourceforge.net/project/roundcubemail/roundcubemail/@VERS@/roundcubemail-@VERS@.tar.gz"
   compression "tar.gz"
-end
-
-template "#{node[:nginx][:www_path]}/#{node[:nginx][:webapps_path]}/roundcubemail-#{node[:webapp][:roundcube][:version]}/config/db.inc.php" do
-  source "db.inc.php.erb"
-  owner node[:nginx][:user]
-  group node[:nginx][:group]
-  mode 0640
-end
-
-template "#{node[:nginx][:www_path]}/#{node[:nginx][:webapps_path]}/roundcubemail-#{node[:webapp][:roundcube][:version]}/config/main.inc.php" do
-  source "main.inc.php.erb"
-  owner node[:nginx][:user]
-  group node[:nginx][:group]
-  mode 0640
+  template ["config/db.inc.php", "config/main.inc.php"]
 end

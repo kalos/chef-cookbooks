@@ -43,7 +43,7 @@ $rcmail_config['plugins'] = array();
 
 // enable caching of messages and mailbox data in the local database.
 // this is recommended if the IMAP server does not run on the same machine
-$rcmail_config['enable_caching'] = <%= @node[:webapp][:roundcube][:caching] %>;
+$rcmail_config['enable_caching'] = <%= @node[:webapps][:roundcube][:caching] %>;
 
 // lifetime of message cache
 // possible units: s, m, h, d, w
@@ -52,7 +52,7 @@ $rcmail_config['message_cache_lifetime'] = '10d';
 // enforce connections over https
 // with this option enabled, all non-secure connections will be redirected.
 // set the port for the ssl connection as value of this option if it differs from the default 443
-$rcmail_config['force_https'] = <%= @node[:webapp][:roundcube][:force_ssl] %>;
+$rcmail_config['force_https'] = <%= @node[:webapps][:roundcube][:force_ssl] %>;
 
 // automatically create a new RoundCube user when log-in the first time.
 // a new user will be created once the IMAP login succeeds.
@@ -63,7 +63,7 @@ $rcmail_config['auto_create_user'] = TRUE;
 // leave blank to show a textbox at login, give a list of hosts
 // to display a pulldown menu or set one host as string.
 // To use SSL/TLS connection, enter hostname with prefix ssl:// or tls://
-$rcmail_config['default_host'] = '<%= @node[:webapp][:roundcube][:mail_server] %>';
+$rcmail_config['default_host'] = '<%= @node[:webapps][:roundcube][:mail_server] %>';
 
 // TCP port used for IMAP connections
 $rcmail_config['default_port'] = 143;
@@ -99,10 +99,10 @@ $rcmail_config['virtuser_query'] = '';
 // to use SSL connection, set ssl://smtp.host.com
 // if left blank, the PHP mail() function is used
 // Use %h variable as replacement for user's IMAP hostname
-$rcmail_config['smtp_server'] = '<%= @node[:webapp][:roundcube][:smtp_server] %>';
+$rcmail_config['smtp_server'] = '<%= @node[:webapps][:roundcube][:smtp_server] %>';
 
 <%
-if @node[:webapp][:roundcube][:smtp_server] =~ /^ssl:\/\/./
+if @node[:webapps][:roundcube][:smtp_server] =~ /^ssl:\/\/./
   smtp_port = "465"
 else
   smtp_port = "25"
@@ -172,7 +172,7 @@ $rcmail_config['des_key'] = 'rcmail-!24ByteDESkey*Str';
 
 // the default locale setting (leave empty for auto-detection)
 // RFC1766 formatted language name like en_US, de_DE, de_CH, fr_FR, pt_BR
-$rcmail_config['language'] = '<%= @node[:webapp][:roundcube][:lang] %>';
+$rcmail_config['language'] = '<%= @node[:webapps][:roundcube][:lang] %>';
 
 // use this format for short date display (date or strftime format)
 $rcmail_config['date_short'] = 'D H:i';
@@ -187,26 +187,26 @@ $rcmail_config['date_today'] = 'H:i';
 $rcmail_config['useragent'] = 'RoundCube Webmail/'.RCMAIL_VERSION;
 
 // use this name to compose page titles
-$rcmail_config['product_name'] = <%= @node[:webapp][:roundcube][:page_title] %>;
+$rcmail_config['product_name'] = <%= @node[:webapps][:roundcube][:page_title] %>;
 
 // store draft message is this mailbox
 // leave blank if draft messages should not be stored
-$rcmail_config['drafts_mbox'] = '<%= @node[:webapp][:roundcube][:drafts_mbox] %>';
+$rcmail_config['drafts_mbox'] = '<%= @node[:webapps][:roundcube][:drafts_mbox] %>';
 
 // store spam messages in this mailbox
-$rcmail_config['junk_mbox'] = '<%= @node[:webapp][:roundcube][:junk_mbox] %>';
+$rcmail_config['junk_mbox'] = '<%= @node[:webapps][:roundcube][:junk_mbox] %>';
 
 // store sent message is this mailbox
 // leave blank if sent messages should not be stored
-$rcmail_config['sent_mbox'] = '<%= @node[:webapp][:roundcube][:sent_mbox] %>';
+$rcmail_config['sent_mbox'] = '<%= @node[:webapps][:roundcube][:sent_mbox] %>';
 
 // move messages to this folder when deleting them
 // leave blank if they should be deleted directly
-$rcmail_config['trash_mbox'] = '<%= @node[:webapp][:roundcube][:trash_mbox] %>';
+$rcmail_config['trash_mbox'] = '<%= @node[:webapps][:roundcube][:trash_mbox] %>';
 
 // display these folders separately in the mailbox list.
 // these folders will also be displayed with localized names
-$rcmail_config['default_imap_folders'] = array('INBOX', '<%= @node[:webapp][:roundcube][:drafts_mbox] %>', '<%= @node[:webapp][:roundcube][:sent_mbox] %>', '<%= @node[:webapp][:roundcube][:spam_mbox] %>', '<%= @node[:webapp][:roundcube][:trash_mbox] %>');
+$rcmail_config['default_imap_folders'] = array('INBOX', '<%= @node[:webapps][:roundcube][:drafts_mbox] %>', '<%= @node[:webapps][:roundcube][:sent_mbox] %>', '<%= @node[:webapps][:roundcube][:spam_mbox] %>', '<%= @node[:webapps][:roundcube][:trash_mbox] %>');
 
 // automatically create the above listed default folders on login
 $rcmail_config['create_default_folders'] = FALSE;
