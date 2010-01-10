@@ -9,8 +9,8 @@ version           "0.8"
 end
 
 recommends        "nginx"
+recommends        "webapps"
 
-depends           "apt"
 recipe            "php-fcgi::module_apc", "Install the php5-apc package"
 recipe            "php-fcgi::module_curl", "Install the php5-curl package"
 recipe            "php-fcgi::module_fileinfo", "Install the php5-fileinfo package"

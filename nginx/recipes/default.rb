@@ -90,7 +90,8 @@ if node[:nginx][:fcgi] == 'on' or node[:nginx][:passenger] == 'on'
       group node[:nginx][:group]
       mode 0644
     end
-  elsif node[:nginx][:passenger] == 'on'
+  end
+  if node[:nginx][:passenger] == 'on'
     remote_file "#{node[:nginx][:dir]}/#{node[:nginx][:dir_extra_conf]}/passenger.conf" do
       source "conf.d/passenger.conf"
       owner node[:nginx][:user]
@@ -100,12 +101,11 @@ if node[:nginx][:fcgi] == 'on' or node[:nginx][:passenger] == 'on'
     end
     template "#{node[:nginx][:dir]}/sites-available/TEMPLATE.passenger" do
       source "TEMPLATE.passenger.erb"
-      owner "root"
-      group "root"
+      owner node[:nginx][:user]
+      group node[:nginx][:group]
       mode 0644
     end
- end
-
+  end
 end
 
 service "nginx" do
@@ -115,13 +115,7 @@ end
 remote_directory "#{node[:nginx][:dir]}/ssl" do
   source "ssl"
   files_backup 0
-#  files_owner node[:nginx][:user]
-#  files_group node[:nginx][:group]
   files_mode 0600
-#  owner node[:nginx][:user]
-#  group node[:nginx][:group]
-#  mode 0700
-#  notifies :restart, resources(:service => "nginx")
 end
 
 directory "#{node[:nginx][:www_path]}/#{node[:nginx][:webapps_path]}" do

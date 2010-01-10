@@ -1,0 +1,87 @@
+require 'fileutils'
+
+LOG_DIR = "<%= @node[:webapps][:log_dir] %>"
+STATS_DIR = "<%= @node[:webstats][:path_pages] %>"
+
+class Stats
+  def initialize(paths)
+    Array(paths).each do |@path|
+      puts "path = #@path"
+
+      @site = @path.split('/')[-1]
+      puts "site = #@site"
+
+      Dir.chdir(STATS_DIR)
+
+      FileUtils.mkdir(@site) unless File.directory?(@site)
+      Dir.chdir(@site)
+
+      FileUtils.ln_sf("/usr/share/awstats/icon", "_icons")
+
+      visitors
+#      graphviz
+      awstats
+      template_html
+    end
+  end
+
+  def visitors
+    `visitors #{LOG_DIR}/access_#{@site} -TGKZHUWMRDOXS -m 40 --prefix http://#{@site} -o html > visitors.html`
+  end
+
+#  def graphviz
+#    `dot graph.dot -Tpng > graph.png`
+#  end
+
+  def awstats
+    f = File.new("/etc/awstats/awstats.#{@site}.conf", "w")
+    f.puts <<END
+Include "./BASE"
+DirData="#{STATS_DIR}/#{@site}/_dati"
+LogFile="#{LOG_DIR}/access_#{@site}"
+SiteDomain="#{@site}"
+HostAliases="www.#{@site}"
+END
+    f.close
+    `/usr/share/doc/awstats/examples/awstats_buildstaticpages.pl -awstatsprog=/usr/lib/cgi-bin/awstats.pl -config=#{@site} -update`
+  end
+
+  def template_html
+    unless File.exist?('index.html')
+      f = File.new('index.html', "w")
+
+      f.puts <<END
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+   <title>#{@site} stats</title>
+   <style type="text/css">
+  html,body { margin:0px; padding:0px;background: #eee; font-family: tahoma;}
+  .title {  font-size: 18pt; border-top: 1px solid #666; border-bottom: 1px solid #666; color:  #333; background: #ccc; margin: 20px auto; text-align:center; width:50%; } 
+  .link { text-align:center; height: 20px;}
+  .link a { text-decoration:none; color: #666; font-size: 12pt; } 
+  .link a:hover { color: #900; font-size: 14pt; } 
+   </style>
+    </head>
+    <body>
+<div class='title'>#{@site} web stats</div>
+
+<div class='link'><a href='http://stats.#{@site}/awstats.#{@site}.html'>AWstats</a>
+<div class='link'><a href='http://stats.#{@site}/visitors.html'>visitors</a>
+</body>
+</html>
+END
+      f.close
+    end
+  end
+
+end
+
+sites = Dir.glob('<%= @node[:webapps][:www_path] %>/*')
+sites.each { |x| sites.delete(x) if x.delete("<%= @node[:webapps][:www_path] %>") =~ /^_/ }
+#sites.reject! {|x| x =~ /^\/srv\/www\/_/ }
+puts sites
+#sites << '/srv/www/bim/bum/bam.org'
+
+
+Stats.new(sites)

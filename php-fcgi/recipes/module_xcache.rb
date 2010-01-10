@@ -22,7 +22,8 @@ package "php5-xcache" do
   action :upgrade
 end
 
-link "#{node[:nginx][:www_path]}/#{node[:nginx][:webapps_path]}/xcache" do
+link "#{node[:webapps][:full_path]}/xcache" do
   to "/usr/share/xcache/admin"
-  only_if "test ! -f #{node[:nginx][:www_path]}/#{node[:nginx][:webapps_path]}/xcache"
+  #not_if "test ! -L #{node[:webapps][:full_path]}/xcache"
+  not_if do File.exists?("#{node[:webapps][:full_path]}/xcache") end
 end

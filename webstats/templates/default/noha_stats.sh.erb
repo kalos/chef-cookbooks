@@ -1,0 +1,6 @@
+#!/bin/bash
+
+export LANG=<%= @node[:webstats][:lang] %> LC_ALL=<%= @node[:webstats][:lang] %> LANGUAGE=<%= @node[:webstats][:lang] %>
+
+mkdir <%= @node[:webstats][:path_pages] %>/nohapoeta.it/ && cd <%= @node[:webstats][:path_pages] %>/nohapoeta.it/ && mkdir -p `date +%Y/%B` && cd `date +%Y/%B`
+/usr/share/doc/awstats/examples/awstats_buildstaticpages.pl -awstatsprog=/usr/lib/cgi-bin/awstats.pl -config=nohapoeta.it -month=`date +%m`

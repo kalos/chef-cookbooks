@@ -21,3 +21,7 @@
 package "php-mail" do
   action :upgrade
 end
+
+package "php-mail-mime" do
+  action :upgrade
+end

@@ -38,7 +38,7 @@ include_recipe "php-fcgi::module_sqlite"
 include_recipe "php-fcgi::module_mdb2_sqlite"
 #include_recipe "php-fcgi::module_xcache"
 
-service "php-fcgi" do
+service "php-cgi" do
   supports :restart => true, :reload => true
 end
 
@@ -47,19 +47,16 @@ remote_file "/etc/php5/cgi/php.ini" do
   owner "root"
   group "root"
   mode 0644
-  notifies :restart, resources(:service => "php-fcgi")
-  # mettere nella'attribute, che se esiste la ricetta nginx imposta la var [php][nginx] = on
-  #if node[:nginx][:fcgi] == 'on'
-  # notifies :restart, resources(:service => "nginx")
-  #end
+  notifies :restart, resources(:service => "php-cgi")
 end
 
-template "/etc/init.d/php-fcgi" do
-  source "php-fcgi.erb"
+template "/etc/init.d/php-cgi" do
+  source "php-cgi.erb"
   mode 0755
-  notifies :restart, resources(:service => "php-fcgi")
+  notifies :restart, resources(:service => "php-cgi")
+  backup 0
 end
 
-service "php-fcgi" do
+service "php-cgi" do
   action [ :enable, :start ]
 end

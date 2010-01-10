@@ -8,7 +8,6 @@ version           "0.8"
   supports os
 end
 
-#recommends "apt"
 suggests   "php-fcgi"
 suggests   "ruby-enterprise"
 

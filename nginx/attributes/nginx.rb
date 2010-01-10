@@ -46,11 +46,11 @@ default[:nginx][:gzip_types] = [
 ]
 
 default[:nginx][:fcgi] = 'off'
-if recipe?("php-fcgi")
+if attribute?("php-fcgi")
   set[:nginx][:fcgi] = 'on'
 else
   set[:nginx][:fcgi] = 'off'
 end
 
 default[:nginx][:passenger] = 'off'
-set[:nginx][:passenger] = 'off' unless (recipe?("apt") || recipe?("ruby-enterprise"))
+#set[:nginx][:passenger] = 'off' unless (attribute?("apt") || recipe?("ruby-enterprise"))

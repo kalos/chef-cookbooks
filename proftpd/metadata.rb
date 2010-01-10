@@ -8,8 +8,6 @@ version          "0.2"
   supports os
 end
 
-depends "webapps"
-
 attribute "proftpd/dir",
   :display_name => "proftpd directory",
   :description => "Location of proftpd configuration files",

@@ -5,6 +5,6 @@ server {
   access_log off;
   error_log  /dev/null crit;
 
-  root   <%= @node[:nginx][:www_path] %>/_stats/sites/TEMPLATE;
+  root   <%= @node[:webstats][:path_pages] %>/TEMPLATE;
   index  index.html;
 }

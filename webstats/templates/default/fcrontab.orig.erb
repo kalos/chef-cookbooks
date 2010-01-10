@@ -1,0 +1,6 @@
+!mail(false)
+
+# statistiche web
+0 6 * * *   ruby /srv/www/_stats/stats.rb > /dev/null 2>&1
+
+45 23 * * * [ `date -d tomorrow +%d` -eq '01' ] && /srv/www/_stats/noha_stats.sh

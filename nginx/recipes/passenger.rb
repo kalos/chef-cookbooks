@@ -18,17 +18,11 @@
 # limitations under the License.
 #
 
-#include_recipe "apt"
 include_recipe "ruby-enterprise"
 
-script "add_apt_key" do
-  interpreter "bash"
-  user "root"
-  cwd "/tmp"
-  code <<-EOH
-  wget -q -O - http://apt.brightbox.net/release.asc | apt-key add -
-  EOH
-  not_if "apt-key list | grep brightbox"
+execute "apt-key-add" do
+  command "wget -q -O - http://apt.brightbox.net/release.asc | apt-key add -"
+  only_if "test `apt-key list | grep -c support@brightbox.co.uk` -eq 0"
 end
 
 execute "apt-get update" do

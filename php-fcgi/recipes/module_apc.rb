@@ -19,5 +19,5 @@
 #
 
 package "php5-apc" do
-    action :upgrade
+  action :upgrade
 end
