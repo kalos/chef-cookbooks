@@ -2,7 +2,7 @@
 # Cookbook Name:: apt
 # Recipe:: default
 #
-# Copyright 2008-2009, Opscode, Inc.
+# Copyright 2010, Calogero Lo Leggio
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -60,7 +60,7 @@ node[:apt][:extra_sources].each do |source|
   end
 end
 
-if node[:apt][:unattended_upgrades] == "true"
+if node[:apt][:unattended_upgrades] == true
   package "unattended-upgrades" do
     action :upgrade
   end
