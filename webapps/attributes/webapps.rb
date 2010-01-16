@@ -4,7 +4,7 @@ default[:webapps][:group]     = "www-data"
 
 default[:webapps][:www_path]  = "/var/www"
 
-set[:webapps][:full_path]     = "/srv/www/#{webapps[:path]}"
+set[:webapps][:full_path]     = "#{webapps[:www_path]}/#{webapps[:path]}"
 
 if attribute?("nginx")
   set[:webapps][:www_path]  = nginx[:www_path]

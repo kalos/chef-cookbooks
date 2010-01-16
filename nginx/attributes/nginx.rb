@@ -46,7 +46,7 @@ default[:nginx][:gzip_types] = [
 ]
 
 default[:nginx][:fcgi] = 'off'
-if attribute?("php-fcgi")
+if attribute?("php_fcgi")
   set[:nginx][:fcgi] = 'on'
 else
   set[:nginx][:fcgi] = 'off'

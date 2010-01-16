@@ -1,5 +1,6 @@
 ###
-### kalos configuration
+### <%= @node[:hostname] %> configuration
+###
 ### max_clients = worker_processes * worker_connections/CPUs
 <% if @node[:nginx][:worker_processor] == 0 %>
 ### max_clients = <%= (@node[:cpu][:total] * 2) %> * <%= @node[:nginx][:worker_connections] %>/<%= @node[:cpu][:total] %> = <%= ((@node[:cpu][:total] * 2) * (@node[:nginx][:worker_connections].to_i / @node[:cpu][:total])) %>

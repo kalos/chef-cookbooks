@@ -16,3 +16,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+directory node[:webapps][:full_path] do
+  mode 0755
+  owner node[:webapps][:user]
+  group node[:webapps][:group]
+end

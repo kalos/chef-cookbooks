@@ -1,11 +1,8 @@
-#database_server = search(:node, "database_master:true").map {|n| n['fqdn']}.first
-#db_server = search(:node, "database_master:true").map {|n| n['hostname']}.first
-#db_server = search(:node, "recipe:foo-client").map {|n| n['hostname']}.first
-
 ::Chef::Node.send(:include, Opscode::OpenSSL::Password)
 
-default[:webapps][:roundcube][:version]     = "0.3.1";
+default[:webapps][:roundcube][:chef_query]  = "*";
 
+default[:webapps][:roundcube][:version]     = "0.3.1";
 default[:webapps][:roundcube][:db_provider] = "mysql://roundcube:#{secure_password}@yubaba/roundcube"
 default[:webapps][:roundcube][:mail_server] = "ssl://kiki";
 default[:webapps][:roundcube][:smtp_server] = "ssl://kiki";
