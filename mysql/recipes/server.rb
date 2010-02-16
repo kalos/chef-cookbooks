@@ -63,7 +63,6 @@ template "/etc/mysql/my.cnf" do
 end
 
 service "mysql" do
-  supports :status => true, :restart => true, :reload => true
   action :enable
 end
 

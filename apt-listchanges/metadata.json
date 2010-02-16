@@ -1,38 +1,38 @@
 {
   "version": "0.2.0",
+  "providing": {
+    "apt-listchanges": [
+
+    ]
+  },
+  "dependencies": {
+
+  },
+  "long_description": "",
+  "attributes": {
+
+  },
+  "license": "Apache 2.0",
+  "replacing": {
+
+  },
   "maintainer": "Calogero Lo Leggio",
   "recommendations": {
+
+  },
+  "platforms": {
 
   },
   "maintainer_email": "kalos@nerdrug.org",
   "suggestions": {
 
   },
-  "platforms": {
-
-  },
+  "name": "apt-listchanges",
   "conflicting": {
 
   },
   "recipes": {
     "apt-listchanges": ""
   },
-  "providing": {
-    "apt-listchanges": [
-
-    ]
-  },
-  "long_description": "",
-  "name": "apt-listchanges",
-  "replacing": {
-
-  },
-  "dependencies": {
-
-  },
-  "attributes": {
-
-  },
-  "license": "Apache 2.0",
   "description": "Installs/Configures apt-listchanges"
 }
