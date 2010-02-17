@@ -28,8 +28,8 @@ template "/etc/apt/apt.conf" do
   mode 0644
 end
 
-remote_file "/etc/apt/preferences" do
-  source "preferences"
+template "/etc/apt/preferences" do
+  source "preferences.erb"
   owner "root"
   group "root"
   mode 0644
@@ -70,5 +70,11 @@ if node[:apt][:unattended_upgrades] == true
     owner "root"
     group "root"
     mode 0644
+  end
+end
+
+if node[:apt][:extra_sources].include?("backports")
+  package "debian-backports-keyring" do
+    options "--force-yes"
   end
 end
