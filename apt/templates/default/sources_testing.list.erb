@@ -1,0 +1,9 @@
+<% @urls = @node[:apt][:proxy_url].empty? ? @node[:apt][:mirrors] : @node[:apt][:proxy_url] -%>
+### testing
+###
+<% @urls.each do |url| -%>
+deb http://<%= url %>/debian/ testing main contrib non-free
+  <% if @node[:apt][:sources] == 'on' %>
+deb-src http://<%= url %>/debian/ testing main contrib non-free
+  <% end -%>
+<% end -%>

@@ -4,11 +4,13 @@ license           "Apache 2.0"
 description       "Configures apt and apt services"
 version           "0.8"
 recipe            "apt", "Main apt configuration"
+recipe            "apt::proxy", "proxy server"
 
-supports "debian"
 
-suggests "apticron"
-suggests "apt-listchanges"
+supports          "debian"
+
+suggests          "apticron"
+suggests          "apt-listchanges"
 
 attribute "apt/unattended_upgrades",
   :display_name => "apt autoupdate",

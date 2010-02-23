@@ -18,9 +18,11 @@ Pin: release a=lenny-backports
 Pin-Priority: 800
 <% end %>
 
+<% if @node[:apt][:extra_sources].include?("testing") %>
 Package: *
 Pin: release o=Debian,a=testing
 Pin-Priority: 700
+<% end %>
 
 Explanation: only if I say so
 Package: *
