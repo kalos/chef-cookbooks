@@ -3,7 +3,7 @@
 <% @urls = @node[:apt][:proxy_url].empty? ? @node[:apt][:mirrors] : @node[:apt][:proxy_url] -%>
 <% @urls.each do |url| -%>
 deb http://<%= url %>/debian/ stable main contrib non-free
-  <% if @node[:apt][:sources] == 'on' %>
+  <% if @node[:apt][:sources] %>
 deb-src http://<%= url %>/debian/ stable main contrib non-free
   <% end -%>
 <% end -%>
@@ -11,13 +11,13 @@ deb-src http://<%= url %>/debian/ stable main contrib non-free
 # volatile
 <% @url_volatile = @node[:apt][:proxy_url].empty? ? "volatile.debian.org" : @node[:apt][:proxy_url] -%>
 deb http://<%= @url_volatile %>/debian-volatile stable/volatile main contrib non-free
-<% if @node[:apt][:sources] == 'on' %>
+<% if @node[:apt][:sources] %>
 deb-src http://<%= @url_volatile %>/debian-volatile stable/volatile main contrib non-free
 <% end -%>
 
 # security
 <% @url_security = @node[:apt][:proxy_url].empty? ? "security.debian.org" : "#{@node[:apt][:proxy_url]}/security" -%>
 deb http://<%= @url_security %> stable/updates main contrib non-free
-<% if @node[:apt][:sources] == 'on' %>
+<% if @node[:apt][:sources] %>
 deb-src http://<%= @url_security %>/ stable/updates main contrib non-free
 <% end -%>

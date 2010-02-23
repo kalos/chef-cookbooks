@@ -64,19 +64,17 @@ if node[:apt][:unattended_upgrades] == true
 end
 
 node[:apt][:extra_sources].each do |source|
-  if node[:apt][:extra_sources].include?(source)
-    template "/etc/apt/sources.list.d/#{source}.list" do
-      source "sources_#{source}.list.erb"
-      owner "root"
-      group "root"
-      mode 0644
-      notifies :run, resources(:execute => "apt-get update"), :immediately
-    end
+  template "/etc/apt/sources.list.d/#{source}.list" do
+    source "sources_#{source}.list.erb"
+    owner "root"
+    group "root"
+    mode 0644
+    notifies :run, resources(:execute => "apt-get update"), :immediately
+  end
 
-    if source == "backports"
-      package "debian-backports-keyring" do
-        options "--force-yes"
-      end
+  if source == "backports"
+    package "debian-backports-keyring" do
+      options "--force-yes"
     end
   end
 end

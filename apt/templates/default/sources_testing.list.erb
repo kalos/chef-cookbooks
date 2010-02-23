@@ -3,7 +3,7 @@
 ###
 <% @urls.each do |url| -%>
 deb http://<%= url %>/debian/ testing main contrib non-free
-  <% if @node[:apt][:sources] == 'on' %>
+  <% if @node[:apt][:sources] %>
 deb-src http://<%= url %>/debian/ testing main contrib non-free
   <% end -%>
 <% end -%>
