@@ -1,0 +1,34 @@
+# /etc/zsh/zshrc: system-wide .zshrc file for zsh(1)
+#
+# CopyLeft - Calogero Lo Leggio <kalos@nerdrug.org>
+#
+# Part of this configuration has based on various configuration files taken from the web...
+# the most important references are: http://strcat.de/zsh/ http://www.jukie.net/~bart/conf/
+#
+# ---
+#
+# This file is sourced only for interactive shells. It
+# should contain commands to set up aliases, functions,
+# options, key bindings, etc.
+#
+# Global Order: zshenv, zprofile, zshrc, zlogin
+
+
+# Set the "umask" (see "man umask"):
+# ie read and write for the owner only.
+# umask 002 # relaxed   -rwxrwxr-x
+# umask 022 # cautious  -rwxr-xr-x
+# umask 027 # uptight   -rwxr-x---
+# umask 077 # paranoid  -rwx------
+# umask 066 # bofh-like -rw-------
+umask 002
+
+# If root set umask to 022 to prevent new files being created group and world writable
+#if (( EUID == 0 )); then
+#    umask 022
+#fi
+
+setopt extended_glob
+for zsh_config in /etc/zsh/zsh.d/[0-9][0-9]*[^~] ; do
+  source $zsh_config
+done

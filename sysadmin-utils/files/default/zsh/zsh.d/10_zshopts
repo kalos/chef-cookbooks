@@ -1,0 +1,215 @@
+# CopyLeft - Calogero Lo Leggio <kalos@nerdrug.org>
+
+# {{{ Colors
+autoload -U colors
+if [[ "$terminfo[colors]" -ge 8 ]]; then
+   colors
+fi
+eval `dircolors -b`
+# }}}
+
+# {{{ Options
+#[ a ]##########################################################################
+setopt aliases              # expand aliases
+setopt all_export           # define = export
+#setopt always_last_prompt   #
+setopt always_to_end        # always go to end of word after completion
+setopt auto_cd              # do cd path if only 'path' is given as command
+setopt auto_continue        # send SIGCONT to jobs disowned
+setopt auto_list            # list choice on ambiguous command
+setopt auto_menu            # show menu for completion
+setopt NO_autoname_dirs     # after foo=/absolute/path, ~foo may expand to
+                            # /absolute/path, but `%~' in prompt won't give
+                            # `~foo' until `~foo' has been used (rtfm closely)
+setopt auto_param_keys      # remove trailing spaces after completion if needed
+setopt auto_param_slash     # add slash for directories
+setopt NO_auto_remove_slash # don't remove slash on dirs if word separator added
+setopt auto_pushd           # cd = pushd
+setopt auto_resume          # simgle word resume if possible
+
+#[ b ]##########################################################################
+setopt bad_pattern          # warn on bad file patterns
+setopt bang_hist            # yeah ! expansion
+setopt bare_glob_qual       # () is quaifier list
+setopt NO_bash_auto_list    # auto_list is sufficient, i want it on first tab
+setopt NO_beep              # no beep me please
+setopt NO_bg_nice           # don't renice jobs in bg
+setopt brace_ccl            # expand of {adasd}
+setopt NO_bsd_echo          # dont want BSD echo compat
+
+#[ c ]##########################################################################
+setopt case_glob            # case sensitive globbing
+setopt c_bases              # understand 12#120 as 120 in base 12
+setopt NO_cdable_vars       # dont add ~ automagically
+setopt chase_dots           # foo/bar/.. isn't foo/ even if bar is a symlink
+setopt chase_links          # cd to a symlink is in fact cd to the true dir
+setopt check_jobs           # check jobs on exit
+setopt clobber              # redirection can create files
+#setopt complete_aliases     # dont replace alias before completion
+setopt complete_in_word     # we want completion to be done from cursor in word
+setopt correct              # try to correct command line
+setopt NO_correct_all       # don't coorect args
+setopt NO_csh_junkiehistory # csh sucks
+setopt NO_csh_junkie_loops  # want do /list/; done
+setopt NO_csh_junkie_quotes # csh quote rules sucks too
+setopt NO_csh_nullcmd       # want to keep my (READ)?NULLCMD settings
+setopt NO_csh_null_glob     # don't erase not matched globs silently
+
+#[ d-g ]########################################################################
+setopt NO_dvorak            # use only regular (qw|az)erty
+setopt NO_emacs             # use rather bindkeys that builtin
+setopt equals               # perform = file expansions
+setopt no_err_exit          # don't weant to see exit status even if nonzero
+setopt no_err_return        # return from a function with non 0 ending cmds
+setopt exec                 # sure we want to exec commands
+setopt extended_glob        # #,~,^ expansion
+setopt NO_flow_control      # ignore ^S/^Q
+setopt function_argzero     # $0 == name of script
+setopt glob                 # sure i want globbing
+setopt NO_global_export     # local vars are not globals one
+setopt global_rcs           # use global rcs
+setopt NO_glob_assign       # no globbing on foo=*, use foo=(*)
+setopt NO_glob_complete     # don't generate matches and cycle through them
+setopt NO_glob_dots         # not require . in filename to be match explicitely
+setopt NO_glob_subst        # no recursive expansion
+
+#[ h-j ]########################################################################
+setopt hash_cmds            # do not always search through path, hash cmds
+setopt hash_dirs            # hash directories holding commands too
+setopt hash_list_all        # verify path hash on completion
+setopt NO_hup               # don't SIGHUP bg cmds on logout
+setopt NO_ignore_braces     # do braces expansion
+setopt NO_ignore_eof        # don't ignore ^D
+#setopt interactive
+setopt interactive_comments # allow comments in interactive shell
+
+#[ k-o ]########################################################################
+setopt NO_ksh_arrays        # don't emulate ksh arrays
+setopt NO_ksh_autoload      # don't do some dark autoload on function call
+setopt NO_ksh_glob          # ignore @ before ()
+setopt ksh_option_print     # modify setopt output
+setopt NO_ksh_typeset       # use zsh typeset
+setopt list_ambiguous       # unambiguous prefix completion is done silently
+setopt NO_list_beep         # don't beep for completion
+setopt list_packed          # different width for completion
+setopt NO_list_rows_first   # sort by colums
+setopt list_types           # show types of listing files
+#setopt local_*              # used in functions RTFM
+#setopt login                # don't have to do it myself
+setopt long_list_jobs       # list jobs in long format
+setopt magic_equal_subst    # foo= is file expanded
+setopt NO_mail_warning      # auto-explained
+setopt NO_mark_dirs         # no adds / on dirs in filename completion
+setopt NO_menu_complete     # don't show menu on ambiguous completion
+setopt monitor              # job control
+setopt multios              # multi redirection allowed
+setopt nomatch              # print error on non matched patterns
+setopt notify               # notify immediately, not on next prompt
+setopt NO_null_glob         # don't delete not matched globs
+setopt numeric_glob_sort    # sort in numeric order rather than lexicographic
+setopt NO_octal_zeroes      # 010 = 9 sucks
+setopt NO_overstrike        # dont start le in overstrike mode
+
+#[ p-r ]########################################################################
+setopt path_dirs            # search in path even if cmd has '/' in it
+#setopt no_posix_builtins    # yeah don't like posix, i'm a rebel
+setopt print_eight_bit      # just to be sure
+#setopt privileged           #
+setopt NO_prompt_bang       # dont perform history expansion in prompt
+setopt NO_prompt_cr         # don'tprint <cr> before prompt ---> see precmd !
+setopt prompt_percent       # expand % escapes in prompt
+setopt prompt_subst         # subts in prompt
+setopt pushd_ignore_dups    # ignore dups in pushd
+setopt pushd_minus          # exchange +/-
+setopt pushd_silent         # don't print stack after push/pop
+setopt pushd_to_home        # pushd == pushd $HOME
+#setopt rc_expand_param      # some expansion trick for arrays in params
+setopt rc_quotes            # '' == ' in 'quoted exprs
+setopt rcs                  # source all /etc rcs
+setopt NO_rec_exact         # recognize exact match even if ambiguous
+#setopt restricted           #
+setopt NO_rm_star_silent    # ask user before rm foo/*
+setopt NO_rm_star_wait      # dont't idle 10 seconds
+
+#[ s-z ]########################################################################
+setopt NO_sh_file_expansion # dont expand filnames first
+setopt NO_sh_glob           # allow globbing with [(|)<]
+#setopt shin_stdin           #
+setopt NO_sh_nullcmd        # use my NULLCMD
+setopt sh_option_letters    # interprete single option letters a la ksh
+setopt short_loops          # short loops
+setopt NO_sh_word_split     # `s="a b"; a=($s)' => array of length 1, not 2
+#setopt single_command       #
+setopt NO_single_line_zle   # use multiline editor
+setopt NO_sun_keyboard_hack # i don't use sun kb
+setopt transient_rprompt    # better for cut/paste
+#setopt typeset_silent       #
+#setopt unset                #
+#setopt verbose              #
+setopt vi                   # use bindkeys
+setopt NO_xtrace            # do not debug by default
+setopt zle                  # use zsh le
+# }}}
+
+
+# {{{ History
+setopt append_history       # append to history, dont truncate it
+setopt NO_extended_history  # regular history
+setopt hist_allow_clobber   # add | to redirections in history
+setopt NO_hist_beep         # don't beep on history expansion errors
+setopt hist_expire_dups_first
+setopt hist_find_no_dups    # don't show dups even if not contiguous
+setopt hist_ignore_all_dups # ignore all -- even non contiguous -- dups
+setopt hist_ignore_dups     # ignore contiguous dups
+setopt hist_ignore_space    # historify commands without spaces
+#setopt hist_no_functions    # don't save functions defs in history
+setopt hist_no_store        # remove 'history' access cmds from hist
+setopt hist_reduce_blanks   # remove superfluous blanks
+setopt hist_save_no_dups    # no dups on history saving
+setopt hist_verify          # some expansion gadget
+setopt NO_inc_appendhistory # dont' append incrementally
+setopt NO_share_history     # traditional bash-history
+
+#[ -w ${HOME}/.zsh/history ] && HISTFILE=${HOME}/.zsh/history
+HISTFILE=${HOME}/.zsh/history
+HISTSIZE=100000             # size of history
+NULLCMD='cat'               # use cat for > null commands
+SAVEHIST=65536              # maximum of history events to be save
+DIRSTACKSIZE=50
+# }}}
+
+
+# {{{ Mail
+MAIL=/var/spool/mail/$USER
+MAILCHECK=10
+# }}}
+
+# misc
+# Choose word delimiter characters in line editor
+WORDCHARS="*?_-.[]~/&;!#$%^(){}<>" # part of word in line editor
+
+LISTMAX=0                   # never ask
+watch=(notme)               # watch login/logout
+WATCHFMT="%B->%b %n has just %a %(l:tty%l:%U-Ghost-%u)%(m: from %m:)"
+LOGCHECK=20
+REPORTTIME=60               # report time if execution exceeds amount of seconds
+TIMEFMT="Real: %E User: %U System: %S Percent: %P Cmd: %J"
+# If this parameter is nonzero, the shell will receive an ALRM signal if a
+# command is not entered within the specified number of seconds after issuing a
+# prompt. If there is a trap on SIGALRM, it will be executed and a new alarm is
+# scheduled using the value of the TMOUT parameter after executing the trap.
+#TMOUT=1800
+
+# Executed whenever a command has a non-zero exit status:
+#if fortune bofh-excuses > /dev/null 2>&1 ;then
+#       TRAPZERR() { fortune bofh-excuses | tail -n 1 }
+#else
+#       TRAPZERR() { echo 'AAAAAAAARRRRGHHHHH!!'; }
+#fi
+
+
+# handling the preexec, precmd, and chpwd functions
+# http://xanana.ucsc.edu/~wgscott/wordpress_new/wordpress/?p=12
+typeset -ga preexec_functions
+typeset -ga precmd_functions
+typeset -ga chpwd_functions

@@ -1,0 +1,104 @@
+# /etc/zsh/zshenv: system-wide .zshenv file for zsh(1).
+#
+# CopyLeft - Calogero Lo Leggio <kalos@nerdrug.org>
+#
+# ---
+#
+# This file is sourced on all invocations of the shell.
+# If the -f flag is present or if the NO_RCS option is
+# set within this file, all other initialization files
+# are skipped.
+#
+# This file should contain commands to set the command
+# search path, plus other important environment variables.
+# This file should not contain commands that produce
+# output or assume the shell is attached to a tty.
+#
+# Global Order: zshenv, zprofile, zshrc, zlogin
+
+# {{{ Paths
+export PATH="/bin:/usr/bin:/usr/local/bin:/usr/games:/opt/bin"
+
+if [[ $UID == 0 ]] then
+   export PATH="$PATH:/sbin:/usr/sbin:/usr/local/sbin:/opt/sbin"
+fi
+
+# Clean the non-existing dirs from my $PATH before export $PATH
+path=($^path(N))
+export PATH
+
+# automatically remove duplicates from these arrays
+typeset -gU path cdpath manpath fpath
+# }}}
+
+
+# {{{ Classical environment
+
+if [ x"$HOSTNAME" = x ] ; then
+        export HOSTNAME=$(hostname)
+fi
+
+export EDITOR=vim
+export VISUAL=view
+export PAGER=less
+#export PAGER=most
+#export MANPAGER=most
+export READNULLCMD=${PAGER:-/usr/bin/pager}
+
+export BROWSER=firefox
+
+#export LANG="it_IT.UTF-8"
+# }}}
+
+# {{{ less and manual pages
+#     - colorize, since man-db fails to do so
+#export LESSOPEN="| /usr/bin/lesspipe.sh %s"
+#export LESSCLOSE="/usr/bin/lesspipe.sh %s %s"
+
+export LESS=FRSX
+
+export LESS_TERMCAP_mb=$'\E[01;31m'    # begin blinking
+export LESS_TERMCAP_md=$'\E[01;31m'    # begin bold
+export LESS_TERMCAP_me=$'\E[0m'        # end mode
+export LESS_TERMCAP_se=$'\E[0m'        # end standout-mode
+#export LESS_TERMCAP_so=$'\E[1;33;40m' # begin standout-mode - info box
+export LESS_TERMCAP_so=$'\E[01;44;33m' # begin standout-mode - info box
+export LESS_TERMCAP_ue=$'\E[0m'        # end underline
+export LESS_TERMCAP_us=$'\E[01;32m'    # begin underline
+# }}}
+
+# {{{ Kill flow control
+if tty -s ; then
+    stty -ixon
+    stty -ixoff
+fi
+# }}}
+
+# {{{ Make framebuffer colors look like in X
+#if [ "$TERM" = "linux" ]; then
+#    echo -en "\e]P0222222" #black
+#    echo -en "\e]P8222222" #darkgrey
+#    echo -en "\e]P1803232" #darkred
+#    echo -en "\e]P9982b2b" #red
+#    echo -en "\e]P25b762f" #darkgreen
+#    echo -en "\e]PA89b83f" #green
+#    echo -en "\e]P3aa9943" #brown
+#    echo -en "\e]PBefef60" #yellow
+#    echo -en "\e]P4324c80" #darkblue
+#    echo -en "\e]PC2b4f98" #blue
+#    echo -en "\e]P5706c9a" #darkmagenta
+#    echo -en "\e]PD826ab1" #magenta
+#    echo -en "\e]P692b19e" #darkcyan
+#    echo -en "\e]PEa1cdcd" #cyan
+#    echo -en "\e]P7ffffff" #lightgrey
+#    echo -en "\e]PFdedede" #white
+#    clear #for background artifacting
+#fi
+# }}}
+
+
+# Automatically start X and log out after when logging into vc/1
+#if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/vc/1 ]]; then
+#  dbus-launch startx >& .myXLog
+#  logout
+#fi
