@@ -63,18 +63,25 @@ template "/etc/mysql/my.cnf" do
 end
 
 service "mysql" do
+  supports :status => true, :restart => true, :reload => true
   action :enable
+end
+
+begin
+  t = resources(:template => "/etc/mysql/grants.sql")
+rescue
+  Chef::Log.warn("Could not find previously defined grants.sql resource")
+  t = template "/etc/mysql/grants.sql" do
+    source "grants.sql.erb"
+    owner "root"
+    group "root"
+    mode "0600"
+    action :create
+  end
 end
 
 execute "mysql-install-privileges" do
   command "/usr/bin/mysql -u root -p#{node[:mysql][:server_root_password]} < /etc/mysql/grants.sql"
   action :nothing
-end
-
-template "/etc/mysql/grants.sql" do
-  source "grants.sql.erb"
-  owner "root"
-  group "root"
-  mode "0600"
-  notifies :run, resources(:execute => "mysql-install-privileges"), :immediately
+  subscribes :run, resources(:template => "/etc/mysql/grants.sql")
 end
