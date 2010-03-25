@@ -1,8 +1,10 @@
 #
-# Cookbook Name:: ruby-enterprise
-# Recipe:: default
+# Cookbook Name:: ruby_enterprise
+# Recipe:: ree_gem
 #
-# Copyright 2009, Calogero Lo Leggio
+# Author:: Joshua Timberman (<joshua@opscode.com>)
+#
+# Copyright 2009, Opscode, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,14 +19,10 @@
 # limitations under the License.
 #
 
-script "download_and_install_rubyee" do
-  interpreter "bash"
-  user "root"
-  cwd "/tmp"
-  code <<-EOH 
-  wget "http://rubyforge.org/frs/download.php/66163/ruby-enterprise_1.8.7-2009.10_amd64.deb" -O rubyee.deb
-  dpkg -i rubyee.deb
-  rm -f rubyee.deb
-  EOH
-  not_if "dpkg -l ruby-enterprise | grep ii"
+define :ree_gem, :source => nil, :version => nil do
+  gem_package params[:name] do
+    gem_binary "#{node[:ruby_enterprise][:install_path]}/bin/gem"
+    source params[:source] if params[:source]
+    version params[:version] if params[:version]
+  end
 end
