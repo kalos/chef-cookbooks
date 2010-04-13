@@ -40,6 +40,7 @@ define :db_install, :chef_query => "*", :user => "root", :pass => nil,
   Gem.clear_paths # needed for Chef to find the gem...
   require 'mysql' # requires the mysql gem
 
+  # TODO - SQL con erb ?!
   unless params[:template].empty?
     params[:template].each do |t|
       template t do

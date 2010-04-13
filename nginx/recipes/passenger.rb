@@ -37,6 +37,7 @@ remote_file "/etc/apt/sources.list.d/passenger.list" do
   notifies :run, resources(:execute => "apt-get update"), :immediately
 end
 
+# TODO - no  specific version
 package "librack-ruby1.8" do
   version "1.0.1-1"
 end

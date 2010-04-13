@@ -51,3 +51,22 @@ if node[:sysadmin_utils][:modules].include?('zsh')
     end
   end
 end
+
+# vim
+if node[:sysadmin_utils][:modules].include?('vim')
+  package "vim-nox"
+
+  remote_file "/etc/vim/vimrc" do
+    source "vim/vimrc"
+    owner "root"
+    group "root"
+    mode 0644
+  end
+
+  remote_file "/usr/share/vim/vim71/colors/zenburn.vim" do
+    source "vim/zenburn.vim"
+    owner "root"
+    group "root"
+    mode 0644
+  end
+end
