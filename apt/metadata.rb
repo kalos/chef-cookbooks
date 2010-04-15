@@ -4,7 +4,7 @@ license           "Apache 2.0"
 description       "Configures apt and apt services"
 version           "0.8"
 recipe            "apt", "Main apt configuration"
-recipe            "apt::proxy", "proxy server"
+recipe            "apt::cacher_ng", "apt-cacher-ng proxy server"
 
 
 supports          "debian"
@@ -26,13 +26,13 @@ attribute "apt/mirrors",
   :display_name => "apt mirrors",
   :description => "Mirrors of debian repositories",
   :type => "array",
-  :default => [ "mir1.ovh.net", "ftp.fr.debian.org", "ftp2.fr.debian.org", "ftp.de.debian.org", "ftp2.de.debian.org", "ftp.uk.debian.org" ]
+  :default => [ "ftp.it.debian.org", "ftp.de.debian.org" ]
 
 attribute "apt/extra_sources",
   :display_name => "extra apt sources",
   :description => "extra apt sources",
   :type => "array",
-  :default => [ "backports" ]
+  :default => [ "backports", "testing", "opscode" ]
 
 attribute "apt/email_admin",
   :display_name => "admin email",

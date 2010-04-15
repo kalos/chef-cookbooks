@@ -1,0 +1,4 @@
+Acquire::http { Proxy "http://<%= @node[:apt][:proxy_url] %>"; }
+
+Acquire::HTTP::Proxy::volatile.debian.org "DIRECT";
+Acquire::HTTP::Proxy::bugs.debian.org "DIRECT";

@@ -42,6 +42,15 @@ remote_file "/etc/apt/apt.conf.d/70debconf" do
   mode 0644
 end
 
+if node[:apt][:proxy_url] != ""
+  template "/etc/apt/apt.conf.d/01proxy" do
+    source "01proxy.erb"
+    owner "root"
+    group "root"
+    mode 0644
+  end
+end
+
 template "/etc/apt/sources.list" do
   source "sources.list.erb"
   owner "root"

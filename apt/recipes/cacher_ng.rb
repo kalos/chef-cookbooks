@@ -16,19 +16,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-package "apt-proxy" do 
-  action :install
-end
+package "apt-cacher-ng"
 
-service "apt-proxy" do
+service "apt-cacher-ng" do
   supports :restart => true, :status => false
   action [ :enable, :start ]
-end
-
-template "/etc/apt-proxy/apt-proxy-v2.conf" do
-  source "apt-proxy-v2.conf.erb"
-  owner "root"
-  group "root"
-  mode 0644
-  notifies :restart, resources(:service => "apt-proxy")
 end
